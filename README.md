@@ -6,22 +6,13 @@
 
 1. 使用微信开发者工具导入当前目录，使用项目现有 AppID。
 2. 点击“编译”，进入“入场登记”。无需安装依赖或构建 npm。
-3. 小程序管理后台的“开发管理 → 开发设置 → 服务器域名”应将以下地址配置为 **request 合法域名**：
-   - `https://api.haptest.com`
-   - `https://api.hapyun.com`
-4. 使用真机预览检查签名、键盘和完整提交流程。开发者工具跳过域名校验的设置不适用于正式发布。
+3. 使用真机预览检查签名、键盘和完整提交流程。开发者工具跳过域名校验的设置不适用于正式发布。
 
 建议使用稳定基础库 3.0.0 或以上；项目沿用开发者工具中的现有基础库选择。
 
 ## 接口与环境
 
 `config.js` 根据 `wx.getAccountInfoSync().miniProgram.envVersion` 自动选择接口域名：
-
-| 小程序版本 | 域名 |
-| --- | --- |
-| 开发版 develop | `https://api.haptest.com` |
-| 体验版 trial | `https://api.haptest.com` |
-| 正式版 release | `https://api.hapyun.com` |
 
 使用与网页相同的两个免登录接口：
 
@@ -63,4 +54,3 @@ npm test
 - `utils/signature.js`：签名导出与临时文件清理。
 - `config.js`：环境域名和请求超时。
 - `tests/`：无需依赖的自动化检查，不进入小程序包。
-
