@@ -1,0 +1,14 @@
+{
+  "name": "entry-registration-miniprogram",
+  "version": "1.0.0",
+  "private": true,
+  "description": "实验室访客登记微信小程序",
+  "scripts": {
+    "test": "node --test tests/registration.test.js",
+    "check": "node tests/check-project.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

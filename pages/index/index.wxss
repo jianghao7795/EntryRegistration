@@ -1,0 +1,124 @@
+.page-header { background: #fff; border-bottom: 1rpx solid #e6ecf4; }
+.header-inner {
+  display: flex; align-items: center; max-width: 1280rpx;
+  padding: 28rpx 40rpx; margin: 0 auto;
+}
+.brand-mark {
+  width: 60rpx; height: 60rpx; line-height: 60rpx; text-align: center;
+  color: #fff; background: #1677ff; border-radius: 18rpx; font-size: 40rpx; font-weight: 700;
+}
+.brand-title { margin-left: 18rpx; font-size: 30rpx; font-weight: 600; }
+.header-note { margin-left: auto; color: #7b8799; font-size: 24rpx; white-space: nowrap; }
+.registration-page { width: 100%; max-width: 1224rpx; margin: 0 auto; padding: 48rpx 32rpx 0; }
+.page-intro { padding: 0 8rpx 48rpx; }
+.visitor-label { color: #1677ff; font-size: 24rpx; font-weight: 600; letter-spacing: 4rpx; }
+.page-title { margin: 10rpx 0 12rpx; font-size: 60rpx; line-height: 1.4; font-weight: 650; }
+.intro-copy { color: #6f7d90; font-size: 26rpx; }
+.registration-steps { display: flex; align-items: center; margin-top: 40rpx; }
+.step { display: flex; align-items: center; color: #8995a7; font-size: 24rpx; white-space: nowrap; }
+.step-number {
+  display: inline-block; width: 44rpx; height: 44rpx; line-height: 42rpx;
+  margin-right: 12rpx; border: 2rpx solid #d9e2ee; border-radius: 50%; text-align: center; font-size: 22rpx;
+}
+.step-line { flex: 1; min-width: 8rpx; height: 2rpx; margin: 0 14rpx; background: #dce4ef; }
+.current { color: #1677ff; font-weight: 600; }
+.current .step-number { color: #fff; border-color: #1677ff; background: #1677ff; }
+.form-section {
+  margin-bottom: 32rpx; border: 2rpx solid #e7edf5; border-radius: 32rpx;
+  overflow: hidden; background: #fff;
+}
+.section-heading {
+  display: flex; align-items: center; padding: 36rpx 36rpx 24rpx;
+  font-size: 30rpx; font-weight: 600;
+}
+.section-icon {
+  width: 54rpx; height: 54rpx; line-height: 54rpx; text-align: center; margin-right: 18rpx;
+  color: #1677ff; background: #ecf4ff; border-radius: 16rpx; font-size: 24rpx;
+}
+.field { display: block; margin: 0 36rpx; padding: 30rpx 0; border-bottom: 2rpx solid #f0f3f7; }
+.field:last-child { border-bottom: 0; }
+.field-row { display: flex; align-items: center; min-height: 48rpx; }
+.field-label { width: 176rpx; flex-shrink: 0; color: #485970; }
+.field-input { flex: 1; min-width: 0; height: 48rpx; font-size: 28rpx; color: #18304d; }
+.picker-value { flex: 1; min-width: 0; word-break: break-all; }
+.chevron { margin-left: 12rpx; color: #a5afbd; font-size: 40rpx; line-height: 1; }
+.purpose-field { display: flex; align-items: flex-start; }
+.textarea-wrap { flex: 1; min-width: 0; }
+.purpose-input { display: block; width: 100%; min-height: 150rpx; font-size: 28rpx; line-height: 1.6; }
+.word-limit { margin-top: 16rpx; color: #a5afbd; font-size: 22rpx; text-align: right; }
+.required-mark { color: #ee0a24; }
+.field-error { margin: 10rpx 0 0 176rpx; color: #ee0a24; font-size: 24rpx; }
+.agreement-copy {
+  margin: 0 36rpx; padding: 28rpx; background: #f6f9fd; border: 2rpx solid #edf2f8;
+  border-radius: 20rpx; color: #607188; font-size: 24rpx; line-height: 1.9;
+  white-space: pre-wrap; word-break: break-all;
+}
+.agreement-field { padding: 28rpx 36rpx 24rpx; }
+.agreement-label { display: flex; align-items: flex-start; color: #516279; font-size: 24rpx; line-height: 1.8; }
+.agreement-checkbox { flex-shrink: 0; margin-right: 10rpx; transform: scale(.8); transform-origin: left top; }
+.signature-block { padding: 0 36rpx 32rpx; }
+.signature-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20rpx; color: #485970; font-size: 26rpx; }
+.small-button {
+  flex-shrink: 0; padding: 4rpx 18rpx; margin-left: 12rpx; min-height: 50rpx;
+  border: 2rpx solid #d8e7fc; border-radius: 10rpx; background: #fff;
+  color: #1677ff; font-size: 22rpx; line-height: 40rpx;
+}
+.small-button[disabled] { color: #a5afbd; border-color: #e7edf5; background: #fafbfd; }
+.signature-surface { position: relative; border: 2rpx dashed #cbd8e9; border-radius: 20rpx; background: #fcfdff; overflow: hidden; }
+.signature-surface.has-ink { border-style: solid; border-color: #d3e1f1; }
+.signature-canvas { display: block; width: 100%; height: 280rpx; }
+.signature-placeholder {
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: flex;
+  align-items: center; justify-content: center; pointer-events: none;
+  color: #b3bfce; font-size: 32rpx; letter-spacing: 4rpx;
+}
+.signature-help { margin-top: 16rpx; color: #97a3b3; font-size: 22rpx; }
+.validation-error { margin-top: 12rpx; color: #ee0a24; font-size: 24rpx; }
+.options-status, .canvas-error {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24rpx 28rpx; margin-bottom: 32rpx; border-radius: 20rpx;
+  background: #eaf3ff; color: #516279; font-size: 26rpx;
+}
+.options-error, .submit-error, .canvas-error { background: #fff0ef; color: #ba3c35; }
+.canvas-error { margin-bottom: 20rpx; font-size: 24rpx; }
+.submit-error { padding: 24rpx 32rpx; margin-bottom: 32rpx; border-radius: 20rpx; font-size: 26rpx; word-break: break-all; }
+.submit-area { padding: 12rpx 4rpx 0; }
+.submit-button {
+  width: 100%; min-height: 96rpx; line-height: 96rpx; border-radius: 48rpx;
+  background: #1677ff; color: #fff; font-size: 30rpx; font-weight: 600;
+}
+.submit-button[type="primary"] { background: #1677ff; }
+.submit-button[disabled][type="primary"] { background: #a2c8fc; color: #fff; }
+.submit-note { margin-top: 24rpx; color: #8d9aac; font-size: 22rpx; text-align: center; }
+.page-footer {
+  padding: 48rpx 0; padding-bottom: calc(48rpx + env(safe-area-inset-bottom));
+  color: #a4afbf; font-size: 22rpx; text-align: center;
+}
+.muted { color: #7b8799; }
+.success-panel {
+  padding: 64rpx 40rpx 48rpx; margin-top: 48rpx; background: #fff;
+  border: 2rpx solid #e7edf5; border-radius: 36rpx; text-align: center; font-size: 26rpx;
+}
+.success-icon {
+  width: 128rpx; height: 128rpx; line-height: 128rpx; margin: 0 auto 40rpx;
+  color: #1677ff; background: #eaf3ff; border-radius: 50%; font-size: 64rpx;
+}
+.status-tag { padding: 4rpx 14rpx; border: 2rpx solid #1677ff; border-radius: 8rpx; color: #1677ff; font-size: 24rpx; }
+.success-title { margin: 24rpx 0 16rpx; font-size: 48rpx; font-weight: 600; }
+.registration-summary { padding: 24rpx 28rpx; margin: 48rpx 0 36rpx; background: #f6f9fd; border-radius: 24rpx; text-align: left; }
+.summary-row { display: flex; align-items: baseline; justify-content: space-between; padding: 16rpx 0; color: #7b8799; }
+.summary-row > text:first-child { flex-shrink: 0; }
+.summary-value { margin-left: 32rpx; color: #18304d; text-align: right; word-break: break-all; }
+.success-tip { color: #7b8799; font-size: 24rpx; text-align: left; }
+@media (max-width: 360px) {
+  .header-inner { padding: 24rpx 28rpx; }
+  .brand-title { font-size: 28rpx; }
+  .header-note { font-size: 22rpx; }
+  .registration-page { padding-left: 24rpx; padding-right: 24rpx; }
+  .section-heading { padding-left: 28rpx; padding-right: 28rpx; }
+  .field, .agreement-copy { margin-left: 28rpx; margin-right: 28rpx; }
+  .agreement-field, .signature-block { padding-left: 28rpx; padding-right: 28rpx; }
+  .step-line { margin: 0 8rpx; }
+  .step-number { margin-right: 8rpx; }
+}
+

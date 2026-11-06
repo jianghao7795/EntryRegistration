@@ -1,0 +1,167 @@
+<view class="page-header">
+  <view class="header-inner">
+    <text class="brand-mark">H</text>
+    <text class="brand-title">实验室访客登记</text>
+    <text class="header-note">安全入场</text>
+  </view>
+</view>
+
+<view class="registration-page">
+  <block wx:if="{{!registrationId}}">
+    <view class="page-intro">
+      <text class="visitor-label">外来访客</text>
+      <view class="page-title">入场登记</view>
+      <view class="intro-copy">请如实填写到访信息，签署承诺后提交审核。</view>
+      <view class="registration-steps">
+        <view class="step current"><text class="step-number">1</text><text>填写信息</text></view>
+        <view class="step-line"></view>
+        <view class="step"><text class="step-number">2</text><text>签署承诺</text></view>
+        <view class="step-line"></view>
+        <view class="step"><text class="step-number">3</text><text>等待审核</text></view>
+      </view>
+    </view>
+
+    <view wx:if="{{optionsLoading}}" class="options-status" role="status">正在加载登记信息…</view>
+    <view wx:elif="{{optionsError}}" class="options-status options-error" role="alert">
+      <text>登记信息加载失败，请重试</text>
+      <button class="small-button" bindtap="loadOptions">重新加载</button>
+    </view>
+
+    <view class="form-section">
+      <view class="section-heading"><text class="section-icon">01</text><text>个人信息</text></view>
+      <view class="field" id="field-name">
+        <view class="field-row">
+          <view class="field-label"><text class="required-mark">*</text> 姓名</view>
+          <input class="field-input" value="{{form.name}}" data-field="name" bindinput="onInput"
+            placeholder="请输入姓名" placeholder-class="placeholder" maxlength="100"
+            disabled="{{submitting}}" cursor-spacing="30" />
+        </view>
+        <view wx:if="{{errors.name}}" class="field-error">{{errors.name}}</view>
+      </view>
+      <view class="field"><view class="field-row">
+        <text class="field-label">手机号</text>
+        <input class="field-input" type="number" value="{{form.phone}}" data-field="phone" bindinput="onInput"
+          placeholder="请输入手机号" placeholder-class="placeholder" maxlength="-1"
+          disabled="{{submitting}}" cursor-spacing="30" />
+      </view></view>
+      <view class="field"><view class="field-row">
+        <text class="field-label">证件号</text>
+        <input class="field-input" value="{{form.idNo}}" data-field="idNo" bindinput="onInput"
+          placeholder="身份证 / 护照 / 工牌号" placeholder-class="placeholder" maxlength="100"
+          disabled="{{submitting}}" cursor-spacing="30" />
+      </view></view>
+      <view class="field"><view class="field-row">
+        <text class="field-label">单位/公司</text>
+        <input class="field-input" value="{{form.company}}" data-field="company" bindinput="onInput"
+          placeholder="请输入单位名称" placeholder-class="placeholder" maxlength="200"
+          disabled="{{submitting}}" cursor-spacing="30" />
+      </view></view>
+    </view>
+
+    <view class="form-section">
+      <view class="section-heading"><text class="section-icon">02</text><text>到访信息</text></view>
+      <picker class="field" mode="date" value="{{form.visitDate}}" start="1000-01-01" end="9999-12-31"
+        disabled="{{submitting}}" bindchange="onDateChange">
+        <view class="field-row">
+          <text class="field-label">到访日期</text><text class="picker-value">{{form.visitDate}}</text>
+          <text class="chevron">›</text>
+        </view>
+      </picker>
+      <picker class="field" mode="selector" range="{{options.visitPeriods}}" value="{{periodIndex}}"
+        data-field="visitPeriod" disabled="{{!optionsReady || submitting}}" bindchange="onOptionChange">
+        <view class="field-row">
+          <text class="field-label">到访时段</text>
+          <text class="picker-value {{form.visitPeriod ? '' : 'placeholder'}}">{{form.visitPeriod || '请选择到访时段'}}</text>
+          <text class="chevron">›</text>
+        </view>
+      </picker>
+      <view class="field"><view class="field-row">
+        <text class="field-label">被访人</text>
+        <input class="field-input" value="{{form.host}}" data-field="host" bindinput="onInput"
+          placeholder="请输入被访人姓名" placeholder-class="placeholder" maxlength="100"
+          disabled="{{submitting}}" cursor-spacing="30" />
+      </view></view>
+      <picker class="field" mode="selector" range="{{options.areas}}" value="{{areaIndex}}"
+        data-field="area" disabled="{{!optionsReady || submitting}}" bindchange="onOptionChange">
+        <view class="field-row">
+          <text class="field-label">访问区域</text>
+          <text class="picker-value {{form.area ? '' : 'placeholder'}}">{{form.area || '请选择访问区域'}}</text>
+          <text class="chevron">›</text>
+        </view>
+      </picker>
+      <view class="field purpose-field">
+        <text class="field-label">到访事由</text>
+        <view class="textarea-wrap">
+          <textarea class="purpose-input" value="{{form.purpose}}" data-field="purpose" bindinput="onInput"
+            placeholder="请说明本次到访事由" placeholder-class="placeholder" maxlength="2000"
+            auto-height="{{true}}" disabled="{{submitting}}" cursor-spacing="30" />
+          <view class="word-limit">{{form.purpose.length}} / 2000</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-section agreement-section">
+      <view class="section-heading"><text class="section-icon">03</text><text>保密与安全承诺</text></view>
+      <view class="agreement-copy">
+        <text wx:if="{{optionsReady}}" user-select="{{true}}">{{options.ndaText}}</text>
+        <text wx:else class="muted">承诺文本将在登记信息加载完成后显示。</text>
+      </view>
+      <view class="agreement-field" id="field-ndaAccepted">
+        <checkbox-group bindchange="onAgreementChange">
+          <label class="agreement-label">
+            <checkbox class="agreement-checkbox" value="accepted" color="#1677ff"
+              checked="{{form.ndaAccepted}}" disabled="{{!optionsReady || submitting}}" />
+            <text><text class="required-mark">*</text> 我已阅读并同意以上保密与安全承诺</text>
+          </label>
+        </checkbox-group>
+        <view wx:if="{{errors.ndaAccepted}}" class="validation-error">{{errors.ndaAccepted}}</view>
+      </view>
+      <view class="signature-block" id="field-signature">
+        <view class="signature-heading">
+          <text>手写签名 <text class="required-mark">*</text></text>
+          <button class="small-button" disabled="{{submitting || !canvasReady}}" bindtap="clearSignature">清除重签</button>
+        </view>
+        <view wx:if="{{canvasError}}" class="canvas-error">
+          <text>签名区加载失败</text>
+          <button class="small-button" bindtap="initSignature">重新加载</button>
+        </view>
+        <view class="signature-surface {{hasInk ? 'has-ink' : ''}}">
+          <canvas type="2d" id="signatureCanvas" class="signature-canvas" disable-scroll="{{true}}"
+            catchtouchstart="beginSignature" catchtouchmove="moveSignature"
+            bindtouchend="finishSignature" bindtouchcancel="finishSignature"></canvas>
+          <view wx:if="{{!hasInk}}" class="signature-placeholder">
+            {{canvasReady ? '请在此处手写签名' : (canvasError ? '请重新加载签名区' : '正在准备签名区…')}}
+          </view>
+        </view>
+        <view wx:if="{{errors.signature}}" class="validation-error">{{errors.signature}}</view>
+        <view class="signature-help">请使用手指签署本人姓名。</view>
+      </view>
+    </view>
+
+    <view wx:if="{{submitError}}" class="submit-error" role="alert">{{submitError}}</view>
+    <view class="submit-area">
+      <button class="submit-button" type="primary" loading="{{submitting}}"
+        disabled="{{!optionsReady || !canvasReady || submitting}}" bindtap="submitRegistration">
+        {{submitting ? '提交中…' : '提交登记'}}
+      </button>
+      <view class="submit-note">提交后请等待前台审核，审核通过后方可入场。</view>
+    </view>
+  </block>
+
+  <view wx:else class="success-panel" role="status">
+    <view class="success-icon">✓</view>
+    <text class="status-tag">待审核</text>
+    <view class="success-title">登记已提交</view>
+    <view class="muted">您的到访信息已提交，请等待前台审核。</view>
+    <view class="registration-summary">
+      <view class="summary-row"><text>登记编号</text><text class="summary-value" user-select="{{true}}">{{registrationId}}</text></view>
+      <view class="summary-row"><text>访客姓名</text><text class="summary-value">{{summary.name}}</text></view>
+      <view class="summary-row"><text>到访日期</text><text class="summary-value">{{summary.visitDate}}</text></view>
+      <view class="summary-row"><text>到访时段</text><text class="summary-value">{{summary.visitPeriod || '—'}}</text></view>
+      <view class="summary-row"><text>被访人</text><text class="summary-value">{{summary.host || '—'}}</text></view>
+    </view>
+    <view class="success-tip">请向前台出示此页面，审核通过后领取访客证。</view>
+  </view>
+  <view class="page-footer">实验室访客出入管理</view>
+</view>
+

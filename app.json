@@ -1,0 +1,14 @@
+{
+  "pages": ["pages/index/index"],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "实验室访客登记",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f3f6fb"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
+
